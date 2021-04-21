@@ -1,12 +1,12 @@
 import "./App.css";
+ import Carousel from "./components/Carousel/Carousel";
 
 function App() {
   return (
-    (
     <div className="App">
-        <h1>The Simpsons Carousel</h1>
-      </div>
-  )
+      <h1>Monochrome</h1>
+      <Carousel chunkSize={3} />
+    </div>
   );
 }
 
