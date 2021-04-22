@@ -57,13 +57,7 @@ const Carousel = ({ totalImages }) => {
       {slideLength.map((item, index) => {
         return (
           <div
-            className={
-              index === currentSlide
-                ? animationType === "fadeInLeft"
-                  ? "active fadeInLeft"
-                  : "active fadeInRight"
-                : "deactive"
-            }
+            className={index === currentSlide ? "active" : "deactive"}
             key={index}
           >
             {index === currentSlide && (
@@ -93,10 +87,16 @@ const Carousel = ({ totalImages }) => {
           return (
             <button
               key={index}
-              id="circleButton"
-              className={currentSlide === index ? "selected" : "notSelected"}
-              aria-label={`navigate to slide ${index}`}
-              onClick={() => setCurrentSlide(index)}
+              className={
+                currentSlide === index
+                  ? "circleButton selected"
+                  : "circleButton notSelected"
+              }
+              aria-label={`navigate to slide ${index + 1}`}
+              onClick={() => {
+                setCurrentSlide(index);
+                setAnimationType("fadeInLeft");
+              }}
             ></button>
           );
         })}

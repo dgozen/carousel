@@ -3,6 +3,7 @@ import React from "react";
 const Arrow = () => {
   return (
     <svg
+      aria-hidden="true"
       width="15px"
       viewBox="0 0 11 20"
       version="1.1"

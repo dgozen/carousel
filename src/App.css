@@ -60,7 +60,7 @@ h1 {
   bottom: 2vh;
 }
 
-#circleButton {
+.circleButton {
   border-radius: 50%;
   border: 1px solid white;
   margin: 2px;
