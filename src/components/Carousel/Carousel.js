@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import slideObjects from "../../utility/slideObjects";
 import Arrow from "../Arrow/Arrow";
 import pause from "../../images/pause.png";
@@ -10,28 +10,26 @@ const Carousel = ({ totalImages }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoPlay, setAutoPlay] = useState(false);
   const slideLength = slideObjects.slice(0, totalImages);
-console.log(animationType);
+
   const toggleAutoPlay = () => {
     setAutoPlay(!autoPlay);
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     const nextSlide = currentSlide + 1;
     setAnimationType("fadeInLeft");
-    console.log(animationType);
 
     if (nextSlide >= totalImages) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(nextSlide);
     }
-  };
+  }, [currentSlide, totalImages]);
 
   const previousSlide = () => {
     const previousSlide = currentSlide - 1;
     setAnimationType("fadeInRight");
-    console.log(animationType);
-
+  
     if (previousSlide < 0) {
       setCurrentSlide(totalImages - 1);
     } else {
@@ -42,7 +40,7 @@ console.log(animationType);
   useEffect(() => {
     const timeout = autoPlay && setTimeout(() => nextSlide(), 5000);
     return () => clearTimeout(timeout);
-  }, [currentSlide, autoPlay]);
+  }, [currentSlide, autoPlay, nextSlide]);
 
   return (
     <section
