@@ -6,16 +6,20 @@ import play from "../../images/play.png";
 import "../../App.css";
 
 const Carousel = ({ totalImages }) => {
+  const [animationType, setAnimationType] = useState("fadeInLeft");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoPlay, setAutoPlay] = useState(false);
   const slideLength = slideObjects.slice(0, totalImages);
-
+console.log(animationType);
   const toggleAutoPlay = () => {
     setAutoPlay(!autoPlay);
-  };;;
+  };
 
   const nextSlide = () => {
     const nextSlide = currentSlide + 1;
+    setAnimationType("fadeInLeft");
+    console.log(animationType);
+
     if (nextSlide >= totalImages) {
       setCurrentSlide(0);
     } else {
@@ -25,6 +29,9 @@ const Carousel = ({ totalImages }) => {
 
   const previousSlide = () => {
     const previousSlide = currentSlide - 1;
+    setAnimationType("fadeInRight");
+    console.log(animationType);
+
     if (previousSlide < 0) {
       setCurrentSlide(totalImages - 1);
     } else {
@@ -38,7 +45,8 @@ const Carousel = ({ totalImages }) => {
   }, [currentSlide, autoPlay]);
 
   return (
-    <section aria-label={`carousel of portraits containing ${totalImages} slides`}
+    <section
+      aria-label={`carousel of portraits containing ${totalImages} slides`}
       className="container"
     >
       <button
@@ -51,12 +59,22 @@ const Carousel = ({ totalImages }) => {
       {slideLength.map((item, index) => {
         return (
           <div
-            className={index === currentSlide ? "active" : "deactive"}
+            className={
+              index === currentSlide
+                ? animationType === "fadeInLeft"
+                  ? "active fadeInLeft"
+                  : "active fadeInRight"
+                : "deactive"
+            }
             key={index}
           >
             {index === currentSlide && (
               <img
-                className="carouselImg"
+                className={
+                  animationType === "fadeInLeft"
+                    ? "carouselImg fadeInLeft"
+                    : "carouselImg fadeInRight"
+                }
                 src={item.img}
                 key={index}
                 alt={item.alt}
@@ -94,9 +112,19 @@ const Carousel = ({ totalImages }) => {
           onClick={toggleAutoPlay}
         >
           {autoPlay ? (
-            <img className="autoPlayIcon" src={pause} alt="autoplay" aria-hidden={true}/>
+            <img
+              className="autoPlayIcon"
+              src={pause}
+              alt="autoplay"
+              aria-hidden={true}
+            />
           ) : (
-            <img className="autoPlayIcon" src={play} alt="autoplay" aria-hidden={true}/>
+            <img
+              className="autoPlayIcon"
+              src={play}
+              alt="autoplay"
+              aria-hidden={true}
+            />
           )}
         </button>
       </div>

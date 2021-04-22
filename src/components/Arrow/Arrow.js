@@ -14,9 +14,9 @@ const Arrow = () => {
       <g
         id="Icons"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="Rounded" transform="translate(-548.000000, -3434.000000)">
           <g id="Navigation" transform="translate(100.000000, 3378.000000)">

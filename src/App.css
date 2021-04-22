@@ -71,11 +71,11 @@ h1 {
 }
 
 .autoPlayButton {
-background-color: transparent;
-border:none;
-margin: 2px;
-height: 22px;
-cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin: 2px;
+  height: 22px;
+  cursor: pointer;
 }
 
 .autoPlayIcon {
@@ -90,6 +90,8 @@ cursor: pointer;
   background-color: transparent;
 }
 
+/* Break Points */
+
 /* small screens, ipads in portrait fx. */
 @media screen and (min-width: 640px) {
   h1 {
@@ -100,15 +102,15 @@ cursor: pointer;
     text-align: center;
     line-height: 0.9;
     position: absolute;
-    z-index:15;
+    z-index: 15;
   }
 
-.nextButton {
-  right:20vw;
-}
+  .nextButton {
+    right: 20vw;
+  }
   .previousButton {
-    left:20vw;
-  } 
+    left: 20vw;
+  }
   .container {
     margin-top: 5vh;
   }
@@ -148,5 +150,72 @@ cursor: pointer;
   .carouselImg {
     width: 40%;
     object-fit: scale-down;
+  }
+}
+
+/* Animations  */
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
   }
 }
