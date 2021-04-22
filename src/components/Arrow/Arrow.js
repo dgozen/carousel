@@ -3,8 +3,7 @@ import React from "react";
 const Arrow = () => {
   return (
     <svg
-      width="11px"
-      height="20px"
+      width="15px"
       viewBox="0 0 11 20"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

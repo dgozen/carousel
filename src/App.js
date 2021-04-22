@@ -4,8 +4,8 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1>Monochrome</h1>
-      <Carousel chunkSize={3} />
+      <h1>Monochrome </h1>
+      <Carousel totalImages={3} />
     </div>
   );
 }

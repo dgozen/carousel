@@ -1,53 +1,106 @@
-import React, { useState } from "react";
-import imageArray from "../../utility/imageArray";
+import React, { useState, useEffect } from "react";
+import slideObjects from "../../utility/slideObjects";
 import Arrow from "../Arrow/Arrow";
-import styles from "./carousel.module.css";
+import pause from "../../images/pause.png";
+import play from "../../images/play.png";
+import "../../App.css";
 
-const Carousel = ({ chunkSize }) => {
-  const [currentImg, setcurrentImg] = useState(0);
-  const totalImages = imageArray.length;
+const Carousel = ({ totalImages }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const slideLength = slideObjects.slice(0, totalImages);
 
-  const nextHandler = () => {
-    const nextImg = currentImg + 1;
-    if (nextImg >= totalImages) {
-      setcurrentImg(0);
+  const toggleAutoPlay = () => {
+    setAutoPlay(!autoPlay);
+  };;;
+
+  const nextSlide = () => {
+    const nextSlide = currentSlide + 1;
+    if (nextSlide >= totalImages) {
+      setCurrentSlide(0);
     } else {
-      setcurrentImg(nextImg);
+      setCurrentSlide(nextSlide);
     }
   };
 
-  const previousHandler = () => {
-    const previousImg = currentImg - 1;
-    if (previousImg < 0) {
-      setcurrentImg(totalImages - 1);
+  const previousSlide = () => {
+    const previousSlide = currentSlide - 1;
+    if (previousSlide < 0) {
+      setCurrentSlide(totalImages - 1);
     } else {
-      setcurrentImg(previousImg);
+      setCurrentSlide(previousSlide);
     }
   };
+
+  useEffect(() => {
+    const timeout = autoPlay && setTimeout(() => nextSlide(), 5000);
+    return () => clearTimeout(timeout);
+  }, [currentSlide, autoPlay]);
 
   return (
-    <div className={styles.container}>
-      <button className={styles.previousButton} onClick={previousHandler}>
+    <section aria-label={`carousel of portraits containing ${totalImages} slides`}
+      className="container"
+    >
+      <button
+        aria-label="previous image"
+        className="buttonArrows previousButton"
+        onClick={previousSlide}
+      >
         <Arrow />
       </button>
-      {imageArray.map((img, index) => {
+      {slideLength.map((item, index) => {
         return (
-          <div>
-            {index === currentImg && (
+          <div
+            className={index === currentSlide ? "active" : "deactive"}
+            key={index}
+          >
+            {index === currentSlide && (
               <img
-                className={styles.carouselImg}
-                src={img}
+                className="carouselImg"
+                src={item.img}
                 key={index}
-                alt={`Portreit ${index} in monochrome`}
+                alt={item.alt}
               />
             )}
           </div>
         );
       })}
-      <button className={styles.nextButton} onClick={nextHandler}>
+      <button
+        aria-label="next image"
+        className="buttonArrows nextButton"
+        onClick={nextSlide}
+      >
         <Arrow />
       </button>
-    </div>
+      <div className="buttonContainer">
+        {[...Array(totalImages).keys()].map((item, index) => {
+          return (
+            <button
+              key={index}
+              id="circleButton"
+              className={currentSlide === index ? "selected" : "notSelected"}
+              aria-label={`navigate to slide ${index}`}
+              onClick={() => setCurrentSlide(index)}
+            ></button>
+          );
+        })}
+        <button
+          aria-label={
+            autoPlay
+              ? "turn off auto play carousel"
+              : "turn on auto play carousel"
+          }
+          className="autoPlayButton"
+          onClick={toggleAutoPlay}
+        >
+          {autoPlay ? (
+            <img className="autoPlayIcon" src={pause} alt="autoplay" aria-hidden={true}/>
+          ) : (
+            <img className="autoPlayIcon" src={play} alt="autoplay" aria-hidden={true}/>
+          )}
+        </button>
+      </div>
+    </section>
   );
 };
 
