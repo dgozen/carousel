@@ -1,22 +1,24 @@
 # The Challenge
-I decided to go with React since it is easier to write components with it and make this as 
-accessible as I could.
+I decided to go with building with React and make this as accessible as I could. 
+
 Basically my idea was to make a carousel that could support not only 3 and 6 objects but as many as required.
 That is why made a "totalImages" prop. One can easily pass in a number and have the carousel buttons 
 adapt dynamically to it. 
 
-For passing in the images I created a dummy objects array that had basically an image and an alt tag.
+For passing in the images I created a dummy objects array that had an image and an alt tag. I created 
+a couple breakpoints to make it responsive for ipads, small and large screens and 
+I made slight changes for mobile layout.
 
 Although carousels by nature are not very accessible I tried to make it as accessible as I could.
-I tried to keep best practices in mind by:
+I tried to keep tp the best practices in mind by:
 1. Giving a play/pause button option
 2. Keeping animations to 5 seconds
-3. Clearly giving aria to buttons and turned the carousel in to a section so I could explain what
-content is being displayed
+3. Clearly writing aria to buttons and turned the carousel in to a section so I could explain what
+content is being displayed with in it.
 4. I chose not to hide the images from the screen readers and instead chose to give it detailed
-alt tags. (The tags in this case are dummy filled) The reason I did this was because during a 
-user test with a blind woman, she pointed out that she felt much more included when the images
-are described for her instead of having them blocked off.
+alt tags. (The tags in this case are dummy filled but the idea was they would be descriptive :) ) 
+The reason I did this was because during a user test with a screenreader user, she pointed out that 
+she felt much more included when the images were described for her instead of having them blocked off.
 
 
 
